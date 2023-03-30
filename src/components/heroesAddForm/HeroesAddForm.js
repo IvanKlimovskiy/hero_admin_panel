@@ -8,13 +8,29 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
 
+import { useDispatch, useSelector } from "react-redux";
+import { setHeroName, setHeroDescription } from '../../actions/index';
 const HeroesAddForm = () => {
+
+  const {inputValueNewHeroName, inputValueHeroDescription} = useSelector(state => state)
+  const dispatch = useDispatch();
+
+  const handleNameChange = (event) => {
+    dispatch(setHeroName(event.target.value));
+  };
+
+  const handleDescriptionChange = (event) => {
+    dispatch(setHeroDescription(event.target.value));
+  };
+
   return (
     <form className="border p-4 shadow-lg rounded">
       <div className="mb-3">
         <label htmlFor="name" className="form-label fs-4">Имя нового героя</label>
         <input
           required
+          onChange={handleNameChange}
+          value={inputValueNewHeroName}
           type="text"
           name="name"
           className="form-control"
@@ -26,6 +42,8 @@ const HeroesAddForm = () => {
         <label htmlFor="text" className="form-label fs-4">Описание</label>
         <textarea
           required
+          onChange={handleDescriptionChange}
+          value={inputValueHeroDescription}
           name="text"
           className="form-control"
           id="text"
