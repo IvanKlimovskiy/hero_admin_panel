@@ -14,11 +14,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         heroesLoadingStatus: "loading",
       };
-      case "FILTERS_FETCHED":
-        return {
-          ...state,
-          filters: action.payload,
-        };
+    case "FILTERS_FETCHED":
+      return {
+        ...state,
+        filters: action.payload,
+      };
     case "HEROES_FETCHED":
       return {
         ...state,
@@ -55,7 +55,14 @@ const reducer = (state = initialState, action) => {
     case "HERO_ADD":
       return {
         ...state,
-        heroes: [...state.heroes, action.payload]
+        heroes: [...state.heroes, action.payload],
+      };
+    case "CLEAR_FORM":
+      return {
+        ...state,
+        inputValueNewHeroName: "",
+        inputValueHeroDescription: "",
+        inputSelectHeroElement: action.payload,
       };
     default:
       return state;

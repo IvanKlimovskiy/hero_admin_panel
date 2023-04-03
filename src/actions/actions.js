@@ -58,3 +58,8 @@ export const addHeroToState = (hero) => {
     payload: hero
   };
 };
+
+export const clearForm = (defaultValue) => ({
+  type: 'CLEAR_FORM',
+  payload: defaultValue
+});

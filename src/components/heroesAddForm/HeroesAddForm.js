@@ -5,12 +5,16 @@ import {
   setHeroElement,
   addHeroToState,
   fetchedFilters,
+  clearForm,
 } from "../../actions/actions";
 import { useHttp } from "../../hooks/http.hook";
 import { v4 as uuidv4 } from "uuid";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const HeroesAddForm = () => {
+
+  const selectRef = useRef(null);
+
   const {
     inputValueNewHeroName,
     inputValueHeroDescription,
@@ -53,6 +57,7 @@ const HeroesAddForm = () => {
       })
     ).then((heroData) => {
       dispatch(addHeroToState(heroData));
+      dispatch(clearForm(selectRef.current.selectedIndex = 0))
     });
   };
 
@@ -97,6 +102,7 @@ const HeroesAddForm = () => {
           Выбрать элемент героя
         </label>
         <select
+          ref={selectRef}
           required
           className="form-select"
           id="element"
