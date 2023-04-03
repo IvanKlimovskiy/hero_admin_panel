@@ -4,6 +4,7 @@ const initialState = {
   filters: [],
   inputValueNewHeroName: "",
   inputValueHeroDescription: "",
+  inputSelectHeroElement: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         heroesLoadingStatus: "loading",
       };
+      case "FILTERS_FETCHED":
+        return {
+          ...state,
+          filters: action.payload,
+        };
     case "HEROES_FETCHED":
       return {
         ...state,
@@ -40,6 +46,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         inputValueHeroDescription: action.payload,
+      };
+    case "HERO_SET_ELEMENT":
+      return {
+        ...state,
+        inputSelectHeroElement: action.payload,
+      };
+    case "HERO_ADD":
+      return {
+        ...state,
+        heroes: [...state.heroes, action.payload]
       };
     default:
       return state;

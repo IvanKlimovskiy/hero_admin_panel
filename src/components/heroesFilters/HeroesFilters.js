@@ -6,6 +6,7 @@
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
 const HeroesFilters = () => {
+
   return (
     <div className="card shadow-lg mt-4">
       <div className="card-body">

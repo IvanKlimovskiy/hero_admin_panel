@@ -1,13 +1,13 @@
 import { useHttp } from "../../hooks/http.hook";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchingHeroes, fetchedHeroes, fetchingErrorHeroes } from "../../actions";
+import { fetchingHeroes, fetchedHeroes, fetchingErrorHeroes } from "../../actions/actions";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 
 const HeroesList = () => {
-  
-  const { heroes, heroesLoadingStatus } = useSelector((state) => state);
+
+  const { heroes, heroesLoadingStatus } = useSelector(state => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 

@@ -1,29 +1,29 @@
 {
   "heroes": [
-      {
-          "id": "f0fb1302-41a6-4709-8d6c-bb230e0c7bd2",
-          "name": "Первый герой",
-          "description": "Первый герой в рейтинге!",
-          "element": "fire"
-      },
-      {
-          "id": "281ea20f-e99d-49b2-b3a9-35233ccb2ce0",
-          "name": "Неизвестный герой",
-          "description": "Скрывающийся в тени",
-          "element": "wind"
-      },
-      {
-          "id": "ceb49238-24e6-4595-89f7-a4134e4b54a6",
-          "name": "Морской герой",
-          "description": "Как аквамен, но не из DC",
-          "element": "water"
-      }
+    {
+      "id": "f0fb1302-41a6-4709-8d6c-bb230e0c7bd2",
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
+    },
+    {
+      "id": "281ea20f-e99d-49b2-b3a9-35233ccb2ce0",
+      "name": "Неизвестный герой",
+      "description": "Скрывающийся в тени",
+      "element": "wind"
+    },
+    {
+      "id": "8f63c26b-4e0f-4efd-8c6c-f1274495a970",
+      "name": "Аквамен",
+      "description": "Я из DC",
+      "element": "water"
+    }
   ],
   "filters": [
-      "all",
-      "fire",
-      "water",
-      "wind",
-      "earth"
+    "all",
+    "fire",
+    "water",
+    "wind",
+    "earth"
   ]
 }
