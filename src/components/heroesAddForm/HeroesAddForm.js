@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
   setHeroName,
   setHeroDescription,
@@ -7,9 +7,9 @@ import {
   fetchedFilters,
   clearForm,
 } from "../../actions/actions";
-import { useHttp } from "../../hooks/http.hook";
-import { v4 as uuidv4 } from "uuid";
-import { useEffect, useRef } from "react";
+import {useHttp} from "../../hooks/http.hook";
+import {v4 as uuidv4} from "uuid";
+import {useEffect, useRef} from "react";
 
 const HeroesAddForm = () => {
 
@@ -19,7 +19,7 @@ const HeroesAddForm = () => {
     inputValueNewHeroName,
     inputValueHeroDescription,
     inputSelectHeroElement,
-    filters,
+    filters
   } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -32,22 +32,23 @@ const HeroesAddForm = () => {
     dispatch(setHeroDescription(event.target.value));
   };
 
-  const { request } = useHttp();
+  const {request} = useHttp();
 
   const handleHeroElement = (event) => {
     dispatch(setHeroElement(event.target.value));
   };
 
   useEffect(() => {
-    request("http://localhost:3001/filters").then((filters) => {
-      dispatch(fetchedFilters(filters));
-    });
+    request("http://localhost:3001/filters")
+      .then((filters) => {
+        dispatch(fetchedFilters(filters));
+      });
   }, []);
 
   const addHero = (evt) => {
     evt.preventDefault();
     request(
-      `http://localhost:3001/heroes/`,
+      "http://localhost:3001/heroes/",
       "POST",
       JSON.stringify({
         id: uuidv4(),
@@ -57,7 +58,7 @@ const HeroesAddForm = () => {
       })
     ).then((heroData) => {
       dispatch(addHeroToState(heroData));
-      dispatch(clearForm(selectRef.current.selectedIndex = 0))
+      dispatch(clearForm((selectRef.current.selectedIndex = 0)));
     });
   };
 
@@ -93,7 +94,7 @@ const HeroesAddForm = () => {
           className="form-control"
           id="text"
           placeholder="Что я умею?"
-          style={{ height: "130px" }}
+          style={{height: "130px"}}
         />
       </div>
 
@@ -107,8 +108,7 @@ const HeroesAddForm = () => {
           className="form-select"
           id="element"
           name="element"
-          onChange={handleHeroElement}
-        >
+          onChange={handleHeroElement}>
           <option>Я владею элементом...</option>
           {filteredFilters.map((element, index) => {
             switch (element) {

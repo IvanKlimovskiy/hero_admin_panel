@@ -1,7 +1,10 @@
 const initialState = {
   heroes: [],
+  filteredHeroes: [],
+  isFilteredHeroes: false,
   heroesLoadingStatus: "idle",
   filters: [],
+  activeButton: "",
   inputValueNewHeroName: "",
   inputValueHeroDescription: "",
   inputSelectHeroElement: "",
@@ -63,6 +66,20 @@ const reducer = (state = initialState, action) => {
         inputValueNewHeroName: "",
         inputValueHeroDescription: "",
         inputSelectHeroElement: action.payload,
+      };
+    case "ACTIVE_BUTTON":
+      return {
+        ...state,
+        activeButton: action.payload,
+      };
+    case "ACTIVE_FILTER":
+      return {
+        ...state,
+        isFilteredHeroes: action.payload !== "all",
+        filteredHeroes: action.payload === "all" ? null :
+          state.heroes.filter((hero) => {
+            return hero.element === action.payload;
+          })
       };
     default:
       return state;
