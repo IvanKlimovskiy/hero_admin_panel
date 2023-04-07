@@ -1,29 +1,60 @@
 {
   "heroes": [
     {
-      "id": "f0fb1302-41a6-4709-8d6c-bb230e0c7bd2",
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
+      "id": "e9d2a868-6155-4472-b93d-20e82077743b",
+      "name": "Огненный герой",
+      "description": "Дышать огнём",
       "element": "fire"
     },
     {
-      "id": "281ea20f-e99d-49b2-b3a9-35233ccb2ce0",
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
+      "id": "5337da48-e2cd-4ed9-b1a0-eaa624a84fa8",
+      "name": "Водяной герой",
+      "description": "Могу дышать под водой",
+      "element": "water"
+    },
+    {
+      "id": "106da2d7-ae25-4630-adf9-449c4bbde6fb",
+      "name": "Воздушный герой",
+      "description": "Могу летать",
       "element": "wind"
     },
     {
-      "id": "8f63c26b-4e0f-4efd-8c6c-f1274495a970",
-      "name": "Аквамен",
-      "description": "Я из DC",
-      "element": "water"
+      "id": "361e948f-ff21-4e2e-897b-2e5e5a32deef",
+      "name": "Земляной герой",
+      "description": "Могу управлять землёй",
+      "element": "earth"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+    {
+      "id": "all",
+      "label": "Все",
+      "element": "all",
+      "classname": "btn btn-outline-dark"
+    },
+    {
+      "id": "fire",
+      "label": "Огонь",
+      "element": "fire",
+      "classname": "btn btn-danger"
+    },
+    {
+      "id": "water",
+      "label": "Вода",
+      "element": "water",
+      "classname": "btn btn-primary"
+    },
+    {
+      "id": "wind",
+      "label": "Воздух",
+      "element": "wind",
+      "classname": "btn btn-success"
+    },
+    {
+      "id": "earth",
+      "label": "Земля",
+      "element": "earth",
+      "classname": "btn btn-secondary"
+    }
   ]
 }

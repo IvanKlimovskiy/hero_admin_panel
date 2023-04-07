@@ -1,49 +1,29 @@
-import {useDispatch, useSelector} from "react-redux";
-import {
-  setHeroName,
-  setHeroDescription,
-  setHeroElement,
-  addHeroToState,
-  fetchedFilters,
-  clearForm,
-} from "../../actions/actions";
+import {useDispatch} from "react-redux";
 import {useHttp} from "../../hooks/http.hook";
 import {v4 as uuidv4} from "uuid";
-import {useEffect, useRef} from "react";
-
+import {useRef, useState} from "react";
+import {heroCreate} from "../heroesList/HeroesSlice";
+import {selectAll} from "../heroesFilters/FiltersSlice";
+import store from "../../store/store";
 const HeroesAddForm = () => {
+  const [inputValueNewHeroName, setInputValueNewHeroName] = useState("")
+  const [inputValueHeroDescription, setInputValueHeroDescription] = useState("")
+  const [inputSelectHeroElement, setInputSelectHeroElement] = useState(null)
 
   const selectRef = useRef(null);
-
-  const {
-    inputValueNewHeroName,
-    inputValueHeroDescription,
-    inputSelectHeroElement,
-    filters
-  } = useSelector((state) => state);
-
+  const filters = selectAll(store.getState())
   const dispatch = useDispatch();
-
-  const handleNameChange = (event) => {
-    dispatch(setHeroName(event.target.value));
-  };
-
-  const handleDescriptionChange = (event) => {
-    dispatch(setHeroDescription(event.target.value));
-  };
-
   const {request} = useHttp();
 
-  const handleHeroElement = (event) => {
-    dispatch(setHeroElement(event.target.value));
+  const handleNameChange = (event) => {
+    setInputValueNewHeroName(event.target.value);
   };
-
-  useEffect(() => {
-    request("http://localhost:3001/filters")
-      .then((filters) => {
-        dispatch(fetchedFilters(filters));
-      });
-  }, []);
+  const handleDescriptionChange = (event) => {
+    setInputValueHeroDescription(event.target.value);
+  };
+  const handleHeroElement = (event) => {
+    setInputSelectHeroElement(event.target.value);
+  };
 
   const addHero = (evt) => {
     evt.preventDefault();
@@ -57,12 +37,12 @@ const HeroesAddForm = () => {
         element: inputSelectHeroElement,
       })
     ).then((heroData) => {
-      dispatch(addHeroToState(heroData));
-      dispatch(clearForm((selectRef.current.selectedIndex = 0)));
+      dispatch(heroCreate(heroData));
+      setInputValueNewHeroName("")
+      setInputValueHeroDescription("")
+      setInputSelectHeroElement(selectRef.current.selectedIndex = 0);
     });
   };
-
-  const filteredFilters = filters.filter((filter) => filter !== "all");
 
   return (
     <form onSubmit={addHero} className="border p-4 shadow-lg rounded">
@@ -110,34 +90,11 @@ const HeroesAddForm = () => {
           name="element"
           onChange={handleHeroElement}>
           <option>Я владею элементом...</option>
-          {filteredFilters.map((element, index) => {
-            switch (element) {
-              case "fire":
-                return (
-                  <option key={index} value={element}>
-                    Огонь
-                  </option>
-                );
-              case "water":
-                return (
-                  <option key={index} value={element}>
-                    Вода
-                  </option>
-                );
-              case "wind":
-                return (
-                  <option key={index} value={element}>
-                    Воздух
-                  </option>
-                );
-              case "earth":
-                return (
-                  <option key={index} value={element}>
-                    Земля
-                  </option>
-                );
-              default:
-                return null;
+          {filters.map(({element, label}, index) => {
+            if (element === "all") {
+              return true
+            } else {
+              return <option value={element} key={index}>{label}</option>
             }
           })}
         </select>
